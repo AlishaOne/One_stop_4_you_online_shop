@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Create Account</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">-->
+
+    <style>
+    .container.account {
+        font-size:20px;
+        font-family: Montserrat, sans-serif;
+
+
+    }
+    <!--.myimg {-->
+       <!--margin-top:2-->
+       <!--margin-bottom: 0;-->
+       <!--border-radius: 1;-->
+    <!--}-->
+     footer .glyphicon {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #f4511e;
+    }
+
+
+    </style>
+</head>
+<body>
+{% load bootstrap3 %}
+{% block content %}
+{% load static %}
+
+
+<div class="container account">
+    <br>
+    <br>
+    <div class="row mb-8 col-8 col-sm-12 col-md-8 col-lg-8 mc-auto text-center">
+        <a href="/mainstore">
+            <img src="{% static '/img/onestop4you.jpg' %}" width="100" height="80">
+        </a>
+        <br>
+    </div>
+    <div class="row mb-8 col-8 col-sm-12 col-md-8 col-lg-8 mc-auto">
+        <h3 style="text-align:center">Create Your Account</h3>
+        <form class="" action="{% url 'myprofile:signup'%}" method="post">
+            {% csrf_token %}
+            {% bootstrap_form user_form %}
+            <br>
+            <div class="row mb-8 col-8 col-sm-12 col-md-8 col-lg-8 mc-auto text-center">
+                {% buttons %}
+                <button type="submit" class="btn btn-success btn-product text-center">Create Account</button>
+                {% endbuttons %}
+            </div>
+            <a href="/mainstore">Go back</a>
+        </form>
+    </div>
+
+</div>
+{% endblock %}
+
+</body>
+<br>
+<br>
+<br>
+<br>
+<footer class="container-fluid text-center">
+    <p>@2018 OneStop4You Store Copyright </p>
+</footer>
+</html>

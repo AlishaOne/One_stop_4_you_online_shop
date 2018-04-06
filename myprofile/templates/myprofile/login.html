@@ -1,0 +1,44 @@
+{% extends 'mainstore/layout.html' %}
+{% load bootstrap3 %}
+{% block content %}
+{% load static %}
+<style>
+.form.class{
+        font-size:26px;
+        font-family: Montserrat, sans-serif;
+    }
+
+</style>
+
+<div class="container account">
+    <div class="row mb-8 col-8 col-sm-12 col-md-8 col-lg-8 mc-auto text-center">
+        <a href="/mainstore">
+            <img src="{% static '/img/onestop4you.jpg' %}" width="100" height="80">
+        </a>
+        <br>
+        <br>
+        <form class="form class" style="text-align:center" action="{% url 'myprofile:my_login'%}" method="post">
+            {% csrf_token %}
+            <div class="container">
+                <div class="row input-group mb-3 row col-2 col-sm-12 col-md-6 col-lg-8 mc-auto">
+                    <div class="input-group-prepend">
+                        <label for="username">Username:</label>
+                    </div>
+                    <input type="text" name="username" id="username"/>
+                </div>
+                <div class="input-group mb-3 row col-2 col-sm-12 col-md-6 col-lg-8 mc-auto">
+                    <div class="input-group-prepend">
+                        <label for="password">Password:</label>
+                    </div>
+                    <input type="password" name="password" id="password"/>
+                </div>
+            </div>
+            {% buttons %}
+            <br>
+            <button type="submit" class="btn btn-success btn-product btn-lg"> Login</button>
+            {% endbuttons %}
+        </form>
+    </div>
+</div>
+{% endblock %}
+

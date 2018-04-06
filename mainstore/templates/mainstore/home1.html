@@ -1,0 +1,23 @@
+{% extends 'mainstore/layout_pagination.html' %}
+{% block content %}
+{% load static %}
+{% load staticfiles %}
+<!--if use include partials ,put it here,but can put navgationbar in layout.html too-->
+<!--{% include 'mainstore/partials/nav-bar.html' %}-->
+<div class="row">
+
+    <!--<h1>Products</h1>-->
+    <ul>
+        {% for c in catalogs %}
+        <h4 class="nav nav-pills nav-stacked">
+            <div class="col-3">
+                <li class="active mb-3 row col-2 col-sm-12 col-md-6 col-lg-4 mc-auto">
+                    <a href="{{c.get_absolute_url}}">{{c.name}}</a>
+                </li>
+            </div>
+        </h4>
+        {% endfor %}
+        <br>
+    </ul>
+</div>
+{% endblock %}

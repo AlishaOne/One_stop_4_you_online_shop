@@ -1,0 +1,104 @@
+{% extends 'mainstore/layout.html' %}
+{% load bootstrap3 %}
+{% block content %}
+<style>
+    .carousel-indicate{
+    transform: translate(0px);
+    touch-action: pan-y;
+    -moz-user-select: none;
+    }
+
+
+</style>
+{% load static %}
+<div class="panel panel-default">
+    <ul>
+        <div class="row">
+            <div class="row col-8">
+                <ul>
+                    <div class="=panel-heading"></div>
+                    <div class="panel-body">
+                        <li class="mb-3 row col-2 col-sm-12 col-md-9 col-lg-12 mc-auto">
+                            <h2>{{product.name}}<br><br>
+                                <a class=" " href="{{product.get_absolute_url}}" itemprop="url">
+                                    <!--<span>$ {{product.price}}</span>-->
+                                    <img class="img-rounded" alt="" src="{{MEDIA_URL}}{{product.image.url}}"
+                                         width="700"
+                                         height="500">
+                                    <br>
+                                    <!--<span aria-label="Your price for this item is ">Sale price: $ {{product.price}}-->
+                                    <div class="row col-2 mb-3 row col-2 col-sm-12 col-md-9 col-lg-4 mc-auto">
+                                        <!--<ol class="carousel-indicate">-->
+                                        <div class="image-carouselr"></div>
+                                        <br>
+                        <li class="row col-4 mb-3 row col-2 col-sm-12 col-md-9 col-lg-3 mc-auto thumbnail-image-wrapper carousel-item visible">
+                            <a class="carousel-trigger" role="button" tabindex="0" aria-label="Switch Primary Image">
+                                <img alt=""
+                                     draggable="false" src="{{MEDIA_URL}}{{product.image.url}}"
+                                     data-track="enlarge-image:image"
+                                     width="60" height="50"></a>
+                        </li>
+                        <li class="row col-4 mb-3 row col-2 col-sm-12 col-md-9 col-lg-3 mc-auto thumbnail-image-wrapper carousel-item visible">
+                            <a class="carousel-trigger" role="button" tabindex="0" aria-label="Switch Primary Image">
+                                <img alt=""
+                                     draggable="false" src="{{MEDIA_URL}}{{product.image.url}}"
+                                     data-track="enlarge-image:image"
+                                     width="60" height="50"></a>
+                        </li>
+                        <li class="row col-4 mb-3 row col-2 col-sm-12 col-md-9 col-lg-3 mc-auto thumbnail-image-wrapper carousel-item visible">
+                            <a class="carousel-trigger" role="button" tabindex="0" aria-label="Switch Primary Image">
+                                <img alt=""
+                                     draggable="false" src="{{MEDIA_URL}}{{product.image.url}}"
+                                     data-track="enlarge-image:image"
+                                     width="60" height="50"></a>
+                        </li>
+                        <li class="row col-4 mb-3 row col-2 col-sm-12 col-md-9 col-lg-3 mc-auto thumbnail-image-wrapper carousel-item visible">
+                            <a class="carousel-trigger" role="button" tabindex="0" aria-label="Switch Primary Image">
+                                <img alt=""
+                                     draggable="false" src="{{MEDIA_URL}}{{product.image.url}}"
+                                     data-track="enlarge-image:image"
+                                     width="60" height="50"></a>
+                        </li>
+                        <li class="row col-4 mb-3 row col-2 col-sm-12 col-md-9 col-lg-3 mc-auto thumbnail-image-wrapper carousel-item visible">
+                            <a class="carousel-trigger" role="button" tabindex="0" aria-label="Switch Primary Image">
+                                <img alt=""
+                                     draggable="false" src="{{MEDIA_URL}}{{product.image.url}}"
+                                     data-track="enlarge-image:image"
+                                     width="60" height="50"></a>
+                        </li>
+                        <!--</ol>-->
+                    </div>
+                    </span><br></a><br></h3><br>
+                    <span><p>{{product.description}}<br></p></span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-4 mb-3 row col-2 col-sm-12 col-md-9 col-lg-12 mc-auto">
+                <br>
+                <span aria-label="Your price for this item is "><strong>Sale price: $ {{product.price}}</strong></span><br><br>
+                <br>
+                <span><form class="" action="{% url 'cart:cart_add' product.id %}" method="post">
+                    {% csrf_token %}
+                    {% bootstrap_form cart_product_form %}
+                    {% buttons %}
+                    <button type="submit" class="btn btn-primary add-to-registry-btn"
+                            data-track="Add to Registry"
+                            title="Add to Registry">Add to Cart
+                    </button>
+                    {% endbuttons %}
+
+                    </form></span>
+                <br>
+                <span><button type="submit" class="btn btn-primary " data-track="Save for Later">Save for Later</button></span>
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+        <a href="{{catalog.get_absolute_url}}"><strong>Go Back</strong></a>
+    </ul>
+
+</div>
+
+{% endblock %}

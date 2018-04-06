@@ -1,0 +1,52 @@
+<!--{% extends 'mainstore/layout.html' %}-->
+<!--{% block content %}-->
+
+<!--<body>-->
+<!--&lt;!&ndash;if use include partials ,put it here,but can put navgationbar in layout.html too&ndash;&gt;-->
+<!--&lt;!&ndash;{% include 'mainstore/partials/nav-bar.html' %}&ndash;&gt;-->
+<!--<div class="row">-->
+    <!--{% load static %}-->
+    <!--{% load staticfiles %}-->
+    <!--<ul>-->
+        <!--{% for c in catalogs %}-->
+        <!--<h4 class="nav nav-pills nav-stacked">-->
+            <!--<div class="col-3 menu">-->
+                <!--<li class="active mb-3 row col-2 col-sm-12 col-md-6 col-lg-4 mc-auto">-->
+                    <!--<a href="{{c.get_absolute_url}}">{{c.name}}test c</a>-->
+                <!--</li>-->
+            <!--</div>-->
+        <!--</h4>-->
+        <!--{% endfor %}-->
+        <!--<br>-->
+        <!--{% for p in products %}-->
+        <!--<div class="col-3">-->
+            <!--<ul>-->
+                <!--<li class="active mb-3 row col-2 col-sm-12 col-md-6 col-lg-4 mc-auto">-->
+                    <!--<div>-->
+                        <!--<a href="{{ p.get_absolute_url }}"><strong>{{ p.name }}test p</strong></a>-->
+                        <!--<br>-->
+                        <!--</a>-->
+                        <!--<a class=" " href="{{ p.get_absolute_url }}" itemprop="url">-->
+
+                            <!--<img class="img-rounded" alt="s4" src="{{MEDIA_URL}}{{p.image.url}}" width="180"-->
+                                 <!--height="180">-->
+                            <!--<br>-->
+                            <!--<br>-->
+                            <!--<span><strong>Sale ${{ p.price }}</strong></span>-->
+                            <!--<br>-->
+                        <!--</a>-->
+
+                        <!--<br>-->
+                    <!--</div>-->
+
+                    <!--<br>-->
+                <!--</li>-->
+
+            <!--</ul>-->
+        <!--</div>-->
+        <!--{% endfor %}-->
+    <!--</ul>-->
+<!--</div>-->
+<!--</body>-->
+
+<!--{% endblock %}-->

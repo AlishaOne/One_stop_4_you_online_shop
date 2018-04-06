@@ -1,0 +1,102 @@
+{% extends 'mainstore/layout.html' %}
+{% block content %}
+{% load static %}
+{% load staticfiles %}
+<!--if use include partials ,put it here,but can put navgationbar in layout.html too-->
+<!--{% include 'mainstore/partials/nav-bar.html' %}-->
+<div class="row">
+
+    <!--<h1>Products</h1>-->
+    <ul>
+        {% for c in catalogs %}
+        <h4 class="nav nav-pills nav-stacked">
+            <div class="col-3">
+                <li class="active mb-3 row col-2 col-sm-12 col-md-6 col-lg-4 mc-auto">
+                    <a href="{{c.get_absolute_url}}">{{c.name}}</a>
+                </li>
+            </div>
+        </h4>
+        {% endfor %}
+        <br>
+
+        {% if pts.has_other_pages %}
+        {% for pt in pts %}
+        <div class="col-8">
+            <ul>
+                <li class="active mb-3 row col-2 col-sm-12 col-md-6 col-lg-4 mc-auto">
+                    <div>
+                        <a href="{{ pt.get_absolute_url }}"><strong>{{ pt.name }}</strong></a>
+                        <br>
+                        </a>
+                        <a class=" " href="{{ pt.get_absolute_url }}" itemprop="url">
+                            <img class="img-rounded" alt="s4" src="{{MEDIA_URL}}{{pt.image.url}}" width="180"
+                                 height="180">
+                            <br>
+                            <br>
+                            <span><strong>Sale ${{ pt.price }}</strong></span>
+                            <br>
+                        </a>
+
+                        <br>
+                    </div>
+                    <br>
+                </li>
+
+            </ul>
+        </div>
+        {% endfor %}
+    </ul>
+    <div class="center">
+        <div class="pagination">
+            {% if pts.has_previous %}
+            <li><a href="?page={{ pts.previous_page_number }}{% if p_name %}&mysearch={{p_name}}{% endif %}">&laquo;</a></li>
+            {% else %}
+            <li class="disabled" aria-label="previous page"><a href="#">&laquo;</a></li>
+            {% endif %}
+
+            {% for num in pts.paginator.page_range %}
+            {% if num == pts.number %}
+            <li class="active"><a href="#">{{ num }}<span class="sr-only">(current)</span></a></li>
+            {% else %}
+            <li><a href="?page={{ num }}">{{ num }}</a></li>
+            {% endif %}
+            {% endfor %}
+
+            {% if pts.has_next %}
+            <li><a href="?page={{ pts.next_page_number }}">&raquo;</a></li>
+            {% else %}
+            <li class="disabled" aria-label="next page"><a href="#">&raquo;</a></li>
+            {% endif %}
+            <!--<ul>-->
+        </div>
+    </div>
+    {% else %}
+    {% for r in result %}
+    <div class="col-8">
+    <ul>
+    <li class="active mb-3 row col-2 col-sm-12 col-md-6 col-lg-4 mc-auto">
+    <div>
+    <a href="{{ r.get_absolute_url }}"><strong>{{ r.name }}</strong></a>
+    <br>
+    </a>
+    <a class=" " href="{{ r.get_absolute_url }}" itemprop="url">
+    <img class="img-rounded" alt="s4" src="{{MEDIA_URL}}{{r.image.url}}" width="180"
+    height="180">
+    <br>
+    <br>
+    <span><strong>Sale ${{ r.price }}</strong></span>
+    <br>
+    </a>
+
+    <br>
+    </div>
+    <br>
+    </li>
+
+    </ul>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+</div>
+{% endblock %}

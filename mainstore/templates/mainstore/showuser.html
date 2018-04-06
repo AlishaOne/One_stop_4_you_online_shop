@@ -1,0 +1,22 @@
+{% extends 'myprofile/layout.html' %}
+{% block content %}
+<h1>{{my_users.name}}</h1>
+<ul>
+    {% for my_user in my_users %}
+    <li>
+        Name: {{my_user.name}}
+    </li>
+    <li>
+        Email: {{my_user.email}}
+    </li>
+    <li>
+        Password: {{my_user.password}}
+    </li>
+    <li>
+        Address: {{my_user.address}}
+    </li>
+     <br>
+    {% endfor %}
+</ul>
+{% endblock %}
+

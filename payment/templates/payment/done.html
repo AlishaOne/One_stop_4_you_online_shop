@@ -1,0 +1,9 @@
+{% extends "mainstore/layout.html" %}
+{% block content %}
+<h1>Your payment was successful</h1>
+<p>Your payment has been successfully received.</p>
+<br>
+<a href="{% url 'mainstore:index' %}" class="btn btn-default">
+    Continue Shopping <i class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></i>
+</a>
+{% endblock %}

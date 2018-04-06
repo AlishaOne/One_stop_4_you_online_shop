@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">-->
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">-->
+    {% load bootstrap3 %}
+    <style>
+    .container.account {
+        font-size:20px;
+        font-family: Montserrat, sans-serif;
+
+
+    }
+    .body{
+        font-size:18px;
+        font-family: Montserrat, sans-serif;
+    }
+    .myimg {
+       margin-bottom: 0;
+       border-radius: 0;
+    }
+    .navbar {
+      margin-bottom: 0;
+      background-color:DodgerBlue;
+      z-index: 9999;
+      border: 0;
+      font-size: 18px !important;
+      line-height: 1.42857143 !important;
+      letter-spacing: 4px;
+      border-radius: 0;
+      font-family: Montserrat, sans-serif;
+    }
+    .navbar li a, .navbar .navbar-brand {
+      color: #fff !important;
+    }
+    .navbar-nav li a:hover, .navbar-nav li.active a {
+      color: DodgerBlue !important;
+      background-color: #fff !important;
+     }
+    .navbar-default .navbar-toggle {
+      border-color: transparent;
+      color: DodgerBlue !important;
+     }
+     footer .glyphicon {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #f4511e;
+    }
+    .center {
+        text-align: center;
+        font-size: 20px;
+    }
+
+    .pagination {
+        display: inline-block;
+    }
+
+    .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .3s;
+        border: 1px solid #ddd;
+        margin: 0 4px;
+    }
+
+    .pagination a.active {
+        background-color: #4CAF50;
+        color: white;
+        border: 1px solid #4CAF50;
+    }
+
+    .pagination a:hover:not(.active) {
+        background-color: #ddd;
+     }
+
+
+
+    </style>
+</head>
+<body>
+<header>
+
+    {% load static %}
+    <img class="myimg" src="{% static '/img/bg.jpg' %}" width="2000" height="50">
+    <nav class="navbar navbar-inverse bg-primary">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">OneStop4You</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{% url 'mainstore:index' %}">Products</a></li>
+                <li><a href="#">Brands</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+            <!--<form class="navbar-form navbar-right" action="{% url 'cart:cart_detail' %}">-->
+
+            <form class="navbar-form navbar-right" action="{% url 'cart:cart_detail' %}">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default"><span
+                            class="glyphicon glyphicon-shopping-cart"></span> My Cart
+                    </button>
+                </div>
+            </form>
+
+            {% if request.user and request.user.is_authenticated %}
+            <a class="navbar-form navbar-right" href="#">
+                <button type="submit" class=" btn btn-default"><span class="glyphicon glyphicon-user"></span>Welcome
+                    {{request.user.username}}
+                </button>
+            </a>
+            <a class="navbar-form navbar-right" href="{% url 'myprofile:my_logout' %}">
+                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-log-out"></span> Logout
+                </button>
+            </a>
+            {% else %}
+            <a class="navbar-form navbar-right" href="{% url 'myprofile:my_login' %}">
+                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-log-in"></span> Login
+                </button>
+            </a>
+            <a class="navbar-form navbar-right" href="{% url 'myprofile:signup' %}">
+                <button type="submit" class=" btn btn-default"><span
+                        class="glyphicon glyphicon-user"></span> Signup
+                </button>
+            </a>
+            {% endif %}
+
+            <form class="navbar-form navbar-right" action="{% url 'mainstore:search' catalog_slug %}" method="get">
+                <!--{% csrf_token %}-->
+
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="eg.Samsung S7" name="mysearch">
+                </div>
+                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Search
+                </button>
+            </form>
+        </div>
+    </nav>
+    <h4>
+        <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-6 col-lg-12 col-lg-offset-8">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>
+                    {# call __len__ #}
+                    {% with total_items=cart|length %}
+                    {% if cart|length > 0 %}
+                    Your cart:
+                    <a href="{% url 'cart:cart_detail' %}">
+                        {# If total_items is 1, the output will be 1 item. #}
+                        {# If total_items is 2, the output will be 2 items. #}
+                        {{ total_items }} item{{ total_items|pluralize }},
+                        ${{cart.get_total_price}}
+                    </a>
+                    {% else %}
+                    Your shopping cart is empty.
+                    {% endif %}
+                    {% endwith %}
+                </strong>
+                </div>
+            </div>
+        </div>
+    </h4>
+</header>
+<div class="container">
+    {% block content %}
+    {% endblock %}
+    <br>
+</div>
+</body>
+<br>
+<br>
+<br>
+<br>
+
+<footer class="container-fluid text-center">
+    <p>@2018 OneStop4You Store Copyright </p>
+</footer>
+</html>
