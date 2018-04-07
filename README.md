@@ -1,6 +1,6 @@
 
 ##Demo picture
-
+![Alt text](https://github.com/AlishaOne/onestop4you2/blob/master/onestop4you.jpg?raw=true "mainstore")
 
 ## version
 
